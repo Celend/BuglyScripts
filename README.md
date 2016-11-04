@@ -6,3 +6,5 @@ Useful scripts to get Bugly data in CLI.
  
 ### Dependencies
   + jq
+  + curl
+  + perl
