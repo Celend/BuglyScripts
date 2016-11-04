@@ -8,3 +8,4 @@ Useful scripts to get Bugly data in CLI.
   + jq
   + curl
   + perl
+  + Python3

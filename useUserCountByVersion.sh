@@ -24,7 +24,8 @@ fi
 
 startTime="${baseDate}00"
 endTime="${baseDate}23"
+token=`python3 generate_token.py "$cookie"`
 
-curl_cmd="curl 'https://bugly.qq.com/v2/appId/${appid}/pid/1/version/${version}/channel/-1/startHour/${startTime}/endHour/${endTime}/getOperateRealtimeAppendTrend' -s -H 'Accept-Encoding: gzip, deflate, sdch, br' -H 'Accept-Language: en-GB,en;q=0.8,zh-CN;q=0.6,zh;q=0.4' -H 'content-type: application/json;charset=utf-8' -H 'accept: application/json;charset=utf-8' -H 'Cookie: ${cookie}' -H 'Connection: keep-alive' --compressed"
+curl_cmd="curl 'https://bugly.qq.com/v2/appId/${appid}/pid/1/version/${version}/channel/-1/startHour/${startTime}/endHour/${endTime}/getOperateRealtimeAppendTrend' -s -H 'X-token: ${token}' -H 'Accept-Encoding: gzip, deflate, sdch, br' -H 'Accept-Language: en-GB,en;q=0.8,zh-CN;q=0.6,zh;q=0.4' -H 'content-type: application/json;charset=utf-8' -H 'accept: application/json;charset=utf-8' -H 'Cookie: ${cookie}' -H 'Connection: keep-alive' --compressed"
 
 eval "$curl_cmd | jq '.ret.data.dataList | map(select(.useUserAmount > 0))[-1] | {useUserAmount, startUpAmount}'"
